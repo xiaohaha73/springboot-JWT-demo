@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auth.mapper.SysUserMapper">
+    <!--查询所有用户-->
+    <select id="userList" resultType="com.auth.pojo.SysUser">
+        select *
+        from sys_user
+    </select>
+
+
+    <resultMap id="rolesMap" type="com.auth.pojo.SysUser">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="status" property="status"/>
+        <collection
+                property="sysRole"
+                column="id"
+                ofType="com.auth.pojo.SysRole"
+                javaType="ArrayList"
+                select="com.auth.mapper.SysRoleMapper.getRolesByUid"
+        />
+    </resultMap>
+
+
+    <!--根据id查找用户和他的roles-->
+    <select id="getUser" resultMap="rolesMap">
+        select * from sys_user where (username = #{username})
+    </select>
+
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.resource.mapper.SysRoleMapper">
+    <!--查询所有角色-->
+    <select id="roleList" resultType="com.resource.pojo.SysRole">
+        select * from sys_role
+    </select>
+
+    <!--通过ID获取Role-->
+    <select id="getRoleById" resultType="com.resource.pojo.SysRole">
+        select * from sys_role where (ID = #{rId})
+    </select>
+
+    <!--根据UID获取roles列表-->
+    <select id="getRolesByUid" resultType="com.resource.pojo.SysRole">
+        select * from sys_role a,sys_user_role b where (b.RID = a.ID) and (b.UID = #{id})
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+server:
+  port: 9001
+
+# 配置mybatis
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/security_authority?useSSL=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 73582576
+
+mybatis:
+#  type-aliases-package: com.auth.pojo
+  # 配置mapper.xml文件所在的路径
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 驼峰模式
+    map-underscore-to-camel-case: true
+
+# 存放公钥和私钥
+rsa:
+  key:
+    privateFilePath: C:\Users\Administrator\Desktop\key\id_key_rsa
+    publicFilePath: C:\Users\Administrator\Desktop\key\id_key_rsa.pub
